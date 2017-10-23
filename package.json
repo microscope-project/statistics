@@ -1,0 +1,27 @@
+{
+  "name": "statistics",
+  "version": "1.0.0",
+  "description": "download statics",
+  "main": "dispatch.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microscope-project/statistics.git"
+  },
+  "author": "hyj1991",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/microscope-project/statistics/issues"
+  },
+  "homepage": "https://github.com/microscope-project/statistics#readme",
+  "files": [
+    "dispatch.js"
+  ],
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "fastify": "^0.30.2",
+    "point-of-view": "^0.3.0",
+    "serve-static": "^1.13.1",
+    "urllib": "^2.25.1"
+  }
+}
