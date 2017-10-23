@@ -13,18 +13,20 @@ fastify.register(require('point-of-view'), {
 });
 
 fastify.get('/', async function (req, rep) {
+  const packageQuery = req.query.package || 'easy-monitor';
   const yesterday = new Date(Date.now() - 24 * 60 * 60 * 1000);
   const format = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${yesterday.getDate()}`;
   // 2017.3.10 发布
   const startMonth = new Date('2017-03-10');
   const lastMonth = yesterday.getMonth() && new Date(`${yesterday.getFullYear()}-${yesterday.getMonth()}-${yesterday.getDate()}`)
     || new Date(`${yesterday.getFullYear() - 1}-12-${yesterday.getDate()}`);
-  const urlAll = `http://api.npmjs.org/downloads/point/2017-03-10:${format}/easy-monitor`;
-  const urlDay = `http://api.npmjs.org/downloads/range/2017-03-10:${format}/easy-monitor`;
+  const urlAll = `http://api.npmjs.org/downloads/point/2017-03-10:${format}/${packageQuery}`;
+  const urlDay = `http://api.npmjs.org/downloads/range/2017-03-10:${format}/${packageQuery}`;
   const results = await Promise.all([urllib.request(urlAll), urllib.request(urlDay)]);
   const all = JSON.parse(String(results[0].data));
   const day = JSON.parse(String(results[1].data));
   rep.view(path.join('/view/statistics_day.html'), {
+    name: packageQuery,
     start: ((lastMonth - startMonth) / (yesterday - startMonth)) * 100,
     ezm: {
       day: {
