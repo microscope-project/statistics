@@ -1,6 +1,7 @@
 'use strict';
 const path = require('path');
-const fastify = require('fastify')();
+// const fastify = require('fastify')();
+const fastify = require('/Users/yijun/git/fastify')();
 const serveStatic = require('serve-static');
 const urllib = require('urllib');
 
@@ -28,6 +29,8 @@ fastify.get('/', async function (req, rep) {
   rep.view(path.join('/view/statistics_day.html'), {
     name: packageQuery,
     start: ((lastMonth - startMonth) / (yesterday - startMonth)) * 100,
+    total: all.downloads,
+    yesterday: day.downloads[day.downloads.length - 1].downloads,
     ezm: {
       day: {
         date: JSON.stringify(day.downloads.map(r => r.day)),

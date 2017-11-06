@@ -6,6 +6,7 @@
 </head>
 
 <body>
+  <a href="http://npmjs.com/package/<%- name %>" target="_blank"><%- name %></a>
   <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
   <div id="all" style="width: 1000px;height:400px;"></div>
   <br>
@@ -29,7 +30,7 @@
     },
     title: {
       left: 'center',
-      text: '<%- name %> 总下载量统计',
+      text: '<%- name %> 总下载量统计（总下载：<%- total %> 次）',
     },
     toolbox: {
       feature: {
@@ -110,7 +111,7 @@
     },
     title: {
       left: 'center',
-      text: '<%- name %> 日下载量统计',
+      text: '<%- name %> 日下载量统计（昨日下载：<%- yesterday %> 次）',
     },
     toolbox: {
       feature: {
